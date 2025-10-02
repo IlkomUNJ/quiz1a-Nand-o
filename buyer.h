@@ -1,3 +1,5 @@
+// buyer.h
+
 #ifndef BUYER_H
 #define BUYER_H
 
@@ -7,22 +9,35 @@
 
 using namespace std;
 
-class Buyer {
+class Buyer
+{
 private:
     int id;
     string name;
-    BankCustomer &account; // Association with BankCustomer
+    string address;
+    string phone;
+    string email;
+    BankCustomer *account; // UBAH: dari & menjadi *
 
 public:
-    Buyer(int id, const string& name, BankCustomer &account0)
-        : id(id), name(name), account(account0) {}
+    // UBAH: parameter constructor menjadi pointer
+    Buyer(int id, const string &name, const string &address, const string &phone, const string &email, BankCustomer *account0)
+        : id(id), name(name), address(address), phone(phone), email(email), account(account0) {}
 
     int getId() const { return id; }
     string getName() const { return name; }
-    BankCustomer& getAccount() { return account; }
+    string getAddress() const { return address; }
+    string getPhone() const { return phone; }
+    string getEmail() const { return email; }
+    
+    // UBAH: return type getter menjadi pointer
+    BankCustomer *getAccount() { return account; }
 
     void setId(int newId) { id = newId; }
-    void setName(const std::string& newName) { name = newName; }
+    void setName(const std::string &newName) { name = newName; }
+    void setAddress(const std::string &newAddress) { address = newAddress; }
+    void setPhone(const std::string &newPhone) { phone = newPhone; }
+    void setEmail(const std::string &newEmail) { email = newEmail; }
 };
 
 #endif // BUYER_H
